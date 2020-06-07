@@ -1,0 +1,13 @@
+{% extends "mysite/base.html" %}
+
+{% block body_block %}
+    <div class="jumbotron">
+      {% for course in course_list %}
+      <a href="{{course.id}}">{{course.course_name}}</a>
+      {% empty %}
+      <p>NO COURSES YET!!!</p>
+      {% endfor %}
+      </div>
+
+
+{% endblock %}
