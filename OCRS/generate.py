@@ -7,6 +7,7 @@ django.setup()
 ## FAKE POP SCRIPT
 import random
 from mysite.models import Student,Teacher
+from django.contrib.auth.models import User
 from faker import Faker
 
 fakegen = Faker()
@@ -16,10 +17,30 @@ def populate(N=5):
     for entry in range(N):
 
         # create fake data
-        fake_name = fakegen.name()
-        student = Student.objects.get_or_create(name=fake_name)
-        fake_name = fakegen.name()
-        teacher = Teacher.objects.get_or_create(teacher_name=fake_name)
+        first_name = fakegen.first_name()
+        last_name = fakegen.last_name()
+        uname = first_name[0] + last_name
+        pass_gen = User.objects.make_random_password()
+        print(pass_gen)
+        newUser = User.objects.create(username=uname.lower(),first_name=first_name,last_name=last_name)
+        newUser.set_password(pass_gen)
+        newUser.save()
+        print("CREATED USER")
+        student = Student.objects.create(name="{} {}".format(first_name,last_name),user=newUser)
+        print("CREATED STUDENT")
+
+        first_name = fakegen.first_name()
+        last_name = fakegen.last_name()
+        uname = first_name[0]+ last_name
+        pass_gen = User.objects.make_random_password()
+        print(pass_gen)
+        newUser = User.objects.create(username=uname.lower(),first_name=first_name,last_name=last_name)
+        newUser.set_password(pass_gen)
+        newUser.save()
+        print("CREATED USER")
+        teacher = Student.objects.create(name="{} {}".format(first_name,last_name),user=newUser)
+        print("CREATED STUDENT")
+
 
 
 if __name__ == '__main__':
