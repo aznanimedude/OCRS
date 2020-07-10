@@ -1,20 +1,23 @@
 {% extends "mysite/base.html"%}
 
 {% block body_block %}
-  <div class="jumbotron">
-    <h3>Course Name: {{object.course_name}}</h3><br>
-    <h5>Course Description: {{object.course_description}}</h5><br>
-    {% for teacher in object.teacher.all %}
-    <h5>Teacher: </h5><p>{{teacher.teacher_name}}</p>
-    {% empty %}
-    <p>NONE</p>
-    {% endfor %}
-    <h5>Students: </h5>
+<div class="jumbotron">
+  <h3>Course Name: {{object.course_name}}</h3><br>
+  <h5>Course Description: {{object.course_description}}</h5><br>
+  {% for teacher in object.teacher.all %}
+  <h5>Teacher:</h5>
+  <p>{{teacher.teacher_name}}</p>
+  {% empty %}
+  <p>NONE</p>
+  {% endfor %}
+  <h5>Students: </h5>
+  <ul>
     {% for student in object.students.all %}
-    <p>Student Name: {{student.name}}</p>
+    <li>{{student.name}}</li>
     {% empty %}
     <p>NONE</p>
     {% endfor %}
-  </div>
+  </ul>
+</div>
 
 {% endblock %}

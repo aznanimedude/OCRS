@@ -11,3 +11,6 @@ class CourseListView(ListView):
 
 class CourseDetailView(DetailView):
     model = Course
+
+class EnrollCourseView(TemplateView):
+    pass
