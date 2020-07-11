@@ -24,7 +24,7 @@ def populate(N=5):
         uname = first_name[0] + last_name
         pass_gen = User.objects.make_random_password()
         print(pass_gen)
-        newUser = User.objects.create(username=uname.lower(),first_name=first_name,last_name=last_name)
+        newUser = User.objects.create(username=uname.lower(),first_name=first_name,last_name=last_name, email=(uname.lower()+"@school.edu"))
         newUser.set_password(pass_gen)
         newUser.save()
         print("CREATED USER")
@@ -37,11 +37,11 @@ def populate(N=5):
         uname = first_name[0]+ last_name
         pass_gen = User.objects.make_random_password()
         print(pass_gen)
-        newUser = User.objects.create(username=uname.lower(),first_name=first_name,last_name=last_name)
+        newUser = User.objects.create(username=uname.lower(),first_name=first_name,last_name=last_name,email=(uname.lower()+"@school.edu"))
         newUser.set_password(pass_gen)
         newUser.save()
         print("CREATED USER")
-        teacher = Student.objects.create(name="{} {}".format(first_name,last_name),user=newUser)
+        teacher = Teacher.objects.create(name="{} {}".format(first_name,last_name),user=newUser)
         print("CREATED TEACHER")
         teachers.user_set.add(newUser)
 
