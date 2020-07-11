@@ -1,2 +1,4 @@
 # OCRS
-playing around with recreating an old University Project
+Recreating an old University project to create a course registration system.
+
+Written using Django web framework
