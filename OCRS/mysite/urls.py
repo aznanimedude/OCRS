@@ -7,4 +7,5 @@ urlpatterns = [
     path('',views.IndexView.as_view(),name='index'),
     path('courses/',views.CourseListView.as_view(),name='courses'),
     path('courses/<int:pk>/',views.CourseDetailView.as_view(),name="course_detail"),
+    path('accounts/profile/',views.IndexView.as_view()), # change this later
 ]
